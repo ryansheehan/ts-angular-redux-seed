@@ -1,0 +1,8 @@
+{
+  "name": "typescript-angular-redux",
+  "dependencies": {},
+  "globalDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160627105203",
+    "redux": "registry:dt/redux#3.5.2+20160703092728"
+  }
+}

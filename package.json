@@ -1,0 +1,16 @@
+{
+  "name": "typescript-angular-redux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Sheehan",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "redux": "^3.5.2",
+    "systemjs": "^0.19.31"
+  }
+}

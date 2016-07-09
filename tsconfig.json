@@ -1,0 +1,15 @@
+{
+	"compileOnSave": true,
+    "compilerOptions": {
+        "module": "system",
+        "target": "es5",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "pretty": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

@@ -1,0 +1,7 @@
+.idea/
+
+.git/
+node_modules/
+typings/
+
+npm-debug.log
