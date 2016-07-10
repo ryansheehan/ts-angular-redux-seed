@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 //noinspection TypeScriptCheckImport
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/index';
+import {reduxLoggingConfig as cfg} from './log.config';
 
 export default function createStore($ngReduxProvider: INgReduxProvider):void {
     const logger = createLogger({
@@ -11,11 +12,18 @@ export default function createStore($ngReduxProvider: INgReduxProvider):void {
             switch(action.type) {
                 case '@@reduxUiRouter/$stateChangeStart':
                 case '@@reduxUiRouter/$stateChangeSuccess':
-                    return false;
+                    if(cfg.ignoreRouteLogging) {
+                        return false;
+                    }
             }
             return true;
-        }
+        },
     });
 
-    $ngReduxProvider.createStoreWith(rootReducer, ['ngUiRouterMiddleware', thunk, logger], []);
+    let middleWare: any[] = ['ngUiRouterMiddleware', thunk];
+    if(cfg.enabled) {
+        middleWare.push(logger);
+    }
+
+    $ngReduxProvider.createStoreWith(rootReducer, middleWare, []);
 }

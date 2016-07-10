@@ -1,8 +1,8 @@
 import {ICounterState} from './counter.state';
-import {ReduxUIRouterState} from 'redux-ui-router';
+import {IRouterState} from './router.state';
 
 export interface IRootState extends
-    ICounterState
+    ICounterState,
+    IRouterState
 {
-    router: ReduxUIRouterState
 }
