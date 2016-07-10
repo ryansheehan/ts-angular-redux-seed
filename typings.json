@@ -5,6 +5,7 @@
     "angular": "registry:dt/angular#1.5.0+20160627105203",
     "angular-material": "registry:dt/angular-material#1.0.0-rc5.0+20160627174759",
     "angular-ui-router": "registry:dt/angular-ui-router#1.1.5+20160707113237",
-    "jquery": "registry:dt/jquery#1.10.0+20160704162008"
+    "jquery": "registry:dt/jquery#1.10.0+20160704162008",
+    "redux-thunk": "registry:dt/redux-thunk#2.1.0+20160703120921"
   }
 }

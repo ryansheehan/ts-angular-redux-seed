@@ -13,7 +13,7 @@ export function decrement(): Action {
 }
 
 export function incrementIfOdd() {
-    return (dispatch:Dispatch, getState: ()=>ICounterState) => {
+    return (dispatch:Dispatch<Action>, getState: ()=>ICounterState) => {
         const {counter} = getState();
 
         if(counter % 2 == 0) {
@@ -24,7 +24,7 @@ export function incrementIfOdd() {
 }
 
 export function incrementAsync(delay = 1000) {
-    return (dispatch:Dispatch):void => {
+    return (dispatch:Dispatch<Action>):void => {
         setTimeout(() => dispatch(increment()), delay);
     }
 }

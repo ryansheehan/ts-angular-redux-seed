@@ -9,7 +9,7 @@ System.config({
 		'redux-thunk': 'node_modules/redux-thunk/dist',
         'ng-redux': 'node_modules/ng-redux/dist',
 		'angular-ui-router': 'node_modules/angular-ui-router/release',
-		'redux-ui-router': 'node_modules/redux-ui-router/src',
+		'redux-ui-router': 'node_modules/redux-ui-router/package/lib',
 		'immutable': 'node_modules/immutable/dist',
 		'moment': 'node_modules/moment',
 		'angular-material': 'node_modules/angular-material',
