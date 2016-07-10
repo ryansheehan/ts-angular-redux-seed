@@ -5,7 +5,8 @@ System.config({
 	map: {
 		'app': 'app',
 		'angular': 'node_modules/angular',
-		'redux': 'node_modules/redux/src',
+		'redux': 'node_modules/redux/dist',
+		'redux-thunk': 'node_modules/redux-thunk/dist',
         'ng-redux': 'node_modules/ng-redux/dist',
 		'angular-ui-router': 'node_modules/angular-ui-router/release',
 		'redux-ui-router': 'node_modules/redux-ui-router/src',
@@ -19,7 +20,8 @@ System.config({
 	packages: {
 		'app': { main: 'app.module.js' },
 		'angular': { main: 'index.js' },
-		'redux': { main: 'index.js' },
+		'redux': { main: 'redux.js' },
+		'redux-thunk': { main: 'redux-thunk.js' },
         'ng-redux': { main: 'ng-redux.js' },
 		'angular-ui-router': { main: 'angular-ui-router.js' },
 		'redux-ui-router': { main: 'index.js' },

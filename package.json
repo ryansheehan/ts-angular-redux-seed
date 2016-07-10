@@ -23,6 +23,7 @@
     "moment": "^2.14.1",
     "ng-redux": "^3.3.5-beta.1",
     "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
     "systemjs": "^0.19.31"
   },
   "devDependencies": {
