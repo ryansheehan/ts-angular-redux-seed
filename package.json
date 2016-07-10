@@ -1,7 +1,8 @@
 {
   "name": "ts-angular-redux",
   "version": "1.0.0",
-  "description": "seed project using typescript angular and redux",
+  "description": "seed project using typescript, angular, redux, and systemjs",
+  "keywords": ["angular", "redux", "seed", "systemjs", "typescript"],
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\"",
     "build": "tsc",
@@ -13,6 +14,11 @@
   },
   "author": "Ryan Sheehan <rsheehan@gmail.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryansheehan/ts-angular-redux-seed.git"
+  },
+  "private": true,
   "dependencies": {
     "angular": "^1.5.7",
     "angular-animate": "^1.5.7",
