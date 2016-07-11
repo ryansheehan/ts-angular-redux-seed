@@ -12,7 +12,7 @@ export default function createStore($ngReduxProvider: INgReduxProvider):void {
             switch(action.type) {
                 case '@@reduxUiRouter/$stateChangeStart':
                 case '@@reduxUiRouter/$stateChangeSuccess':
-                    if(cfg.ignoreRouteLogging) {
+                    if(cfg.showRouteLogging) {
                         return false;
                     }
             }

@@ -193,7 +193,7 @@
 #### redux-logger
 Helper flags reside in `app/config/log.config.ts` on the `reduxLoggingConfig` object
     - enabled \[boolean\]: enables or disables redux-logger from logging state changes to the console
-    - ignoreRouteLogging \[boolean\]: enables or disables router-based-actions from logging to the console
+    - showRouteLogging \[boolean\]: shows  or not show routing state changes in the log
 
 
     
