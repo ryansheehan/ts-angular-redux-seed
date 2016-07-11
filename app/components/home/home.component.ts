@@ -5,8 +5,6 @@ class HomeController {
 }
 
 export class HomeComponent implements IComponentOptions {
-    static CID = 'tarHome';
-    
     templateUrl = 'app/components/home/home.template.html';
     controllerAs = "vm";
     controller = HomeController;

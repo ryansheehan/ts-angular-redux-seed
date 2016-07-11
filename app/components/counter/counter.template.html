@@ -1,7 +1,12 @@
 <div>
-    <p>Clicked: {{vm.counter}}</p>
-    <button ng-click='vm.increment()'>+</button>
-    <button ng-click='vm.decrement()'>-</button>
+    <!--<div layout="row">-->
+        <!--<md-button flex class="md-raised md-fab" ng-click='vm.decrement()'>-</md-button>-->
+        <!--<div flex>{{vm.counter}}</div>-->
+        <!--<md-button flex class="md-raised md-fab" ng-click='vm.increment()'>+</md-button>-->
+    <!--</div>-->
+    <md-button flex class="md-raised md-fab" ng-click='vm.decrement()'>-</md-button>
+    <span flex>{{vm.counter}}</span>
+    <md-button flex class="md-raised md-fab" ng-click='vm.increment()'>+</md-button>
     <button ng-click='vm.incrementIfOdd()'>Increment if odd</button>
     <button ng-click='vm.incrementAsync()'>Increment Async</button>
 </div>

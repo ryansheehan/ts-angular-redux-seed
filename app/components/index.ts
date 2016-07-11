@@ -5,13 +5,11 @@ import {HomeComponent} from './home/home.component';
 import {CounterComponent} from './counter/counter.component';
 
 export function registerComponents(module:IModule) {
-    let componentList = [
-        AppMainComponent,
-        AboutComponent,
-        HomeComponent,
-        CounterComponent
-    ];
-    
-    componentList.forEach((c)=>{module.component(c.CID, new c())});
+    module
+        .component('appMain', new AppMainComponent())
+        .component('tarAbout', new AboutComponent())
+        .component('tarHome', new HomeComponent())
+        .component('tarCounter', new CounterComponent());
 }
+
 

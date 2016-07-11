@@ -22,8 +22,6 @@ class CounterController {
 }
 
 export class CounterComponent implements IComponentOptions {
-    static CID = 'tarCounter';
-
     templateUrl = "app/components/counter/counter.template.html";
     controllerAs = "vm";
     controller = CounterController;
