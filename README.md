@@ -61,7 +61,8 @@
     - Function can return a function which takes the redux dispatch method and the getState method and the method definition calls dispatch with a pointer to a function that returns an action.
         
         ```typescript
-        import {Dispatch, Action} from 'redux';
+        import {Action} from 'redux';
+        import {Dispatch} from 'ng-redux';
         import {ICounterState} from '../state/counter.state';
         
         /*
@@ -89,14 +90,14 @@
                     return;
                 }
         
-                dispatch(increment);
+                dispatch(increment());
             }
         }
         
         // possible thanks to redux-thunk
         export function incrementAsync(delay = 1000) {
             return (dispatch:Dispatch<Action>):void => {
-                setTimeout(() => dispatch(increment), delay);
+                setTimeout(() => dispatch(increment()), delay);
             }
         }
         ```
