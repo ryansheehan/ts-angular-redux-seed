@@ -1,4 +1,5 @@
-import {Dispatch, Action} from 'redux';
+import {Action} from 'redux';
+import {Dispatch} from 'ng-redux';
 import {ICounterState} from '../state/counter.state';
 
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
@@ -15,7 +16,7 @@ export function decrement(): CounterAction {
 }
 
 export function incrementIfOdd() {
-    return (dispatch:Dispatch<CounterAction>, getState: ()=>ICounterState) => {
+    return (dispatch:Dispatch, getState: ()=>ICounterState) => {
         const {counter} = getState();
 
         if(counter % 2 == 0) {
@@ -27,7 +28,7 @@ export function incrementIfOdd() {
 }
 
 export function incrementAsync(delay = 1000) {
-    return (dispatch:Dispatch<Action>):void => {
+    return (dispatch:Dispatch):void => {
         setTimeout(() => dispatch(increment()), delay);
     }
 }

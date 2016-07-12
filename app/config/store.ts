@@ -1,7 +1,6 @@
 import {Action} from 'redux';
 import {INgReduxProvider} from 'ng-redux';
 import thunk from 'redux-thunk';
-//noinspection TypeScriptCheckImport
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers/index';
 import {reduxLoggingConfig as cfg} from './log.config';
