@@ -22,12 +22,12 @@ export function incrementIfOdd() {
             return;
         }
 
-        dispatch(increment);
+        dispatch(increment());
     }
 }
 
 export function incrementAsync(delay = 1000) {
     return (dispatch:Dispatch<Action>):void => {
-        setTimeout(() => dispatch(increment), delay);
+        setTimeout(() => dispatch(increment()), delay);
     }
 }
