@@ -7,18 +7,14 @@ export const DELETE_USER = 'DELETE_USER';
 //export const EDIT_USER_NAME = 'EDIT_USER_NAME';
 //export const EDIT_USER_PASSWORD = 'EDIT_USER_PASSWORD';
 
-export interface AddUserAction extends Action {
+export interface UsersListAction extends Action {
     payload: IUserState;
 }
 
-export interface DeleteUserAction extends Action {
-    payload: string;
-}
-
-export function addUser(user:IUserState): AddUserAction {
+export function addUser(user:IUserState): UsersListAction {
     return { type: ADD_USER, payload: user };
 }
 
-export function deleteUser(username:string): DeleteUserAction {
-    return {type: DELETE_USER, payload: username};
+export function deleteUser(user:IUserState): UsersListAction {
+    return {type: DELETE_USER, payload: user};
 }

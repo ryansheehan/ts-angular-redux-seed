@@ -15,6 +15,10 @@ export function registerRoutes($stateProvider: IStateProvider,
         .state('about', {
             url: "/about",
             template: `<tar-about></tar-about>`
+        })
+        .state('users', {
+            url: "/users",
+            template: `<tar-users></tar-users>`
         });
 
     $locationProvider.html5Mode(true);

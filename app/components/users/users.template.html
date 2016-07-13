@@ -1,0 +1,16 @@
+<div layout="column" layout-margin layout-padding>
+  <div ng-if="vm.users.length === 0" flex="100">No users have been added</div>
+  <md-card flex ng-repeat="user in vm.users">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">{{user.username}}</span>
+      </md-card-title-text>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-click="vm.deleteUser(user)">Delete</md-button>
+      </md-card-actions>
+    </md-card-title>
+  </md-card>
+  <div flex="100">
+    <md-button class="md-raised md-primary" ng-click="vm.addRandomUser()">Add</md-button>
+  </div>
+</div>
