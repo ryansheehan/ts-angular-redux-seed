@@ -2,7 +2,7 @@ import {ADD_USER, DELETE_USER, UPDATE_USER, UsersListAction} from '../actions/us
 import {IUserState} from '../state/users.state';
 
 function checkUserDataValid(user:IUserState): boolean {
-    return user && user.username && user.password
+    return user && !!user.username && !!user.password
 }
 
 function addUser(state: IUserState[], action: UsersListAction): IUserState[] {
