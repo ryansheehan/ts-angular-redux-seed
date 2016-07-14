@@ -18,7 +18,7 @@ export function registerRoutes($stateProvider: IStateProvider,
         })
         .state('users', {
             url: "/users",
-            template: `<tar-users></tar-users>`
+            template: `<tar-users flex layout="column"></tar-users>`
         });
 
     $locationProvider.html5Mode(true);

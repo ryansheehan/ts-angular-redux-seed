@@ -2,7 +2,13 @@
   "name": "ts-angular-redux",
   "version": "1.0.0",
   "description": "seed project using typescript, angular, redux, and systemjs",
-  "keywords": ["angular", "redux", "seed", "systemjs", "typescript"],
+  "keywords": [
+    "angular",
+    "redux",
+    "seed",
+    "systemjs",
+    "typescript"
+  ],
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\"",
     "build": "tsc",
@@ -28,6 +34,7 @@
     "immutable": "^3.8.1",
     "moment": "^2.14.1",
     "ng-redux": "^3.3.5-beta.1",
+    "normalize.css": "^4.2.0",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
