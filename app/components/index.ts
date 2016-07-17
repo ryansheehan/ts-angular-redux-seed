@@ -4,6 +4,7 @@ import {AboutComponent} from './about/about.component';
 import {HomeComponent} from './home/home.component';
 import {CounterComponent} from './counter/counter.component';
 import {UsersComponent} from './users/users.component';
+import {UserComponent} from './users/user.component';
 
 export function registerComponents(module:IModule) {
     module
@@ -11,7 +12,8 @@ export function registerComponents(module:IModule) {
         .component('tarAbout', new AboutComponent())
         .component('tarHome', new HomeComponent())
         .component('tarCounter', new CounterComponent())
-        .component('tarUsers', new UsersComponent());
+        .component('tarUsers', new UsersComponent())
+        .component('tarUser', new UserComponent());
 }
 
 

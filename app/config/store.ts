@@ -11,6 +11,9 @@ export default function createStore($ngReduxProvider: INgReduxProvider):void {
             switch(action.type) {
                 case '@@reduxUiRouter/$stateChangeStart':
                 case '@@reduxUiRouter/$stateChangeSuccess':
+                case '@@reduxUiRouter/stateGo':
+                case '@@reduxUiRouter/stateReload':
+                case '@@reduxUiRouter/stateTransitionTo':
                     if(!cfg.showRouteLogging) {
                         return false;
                     }

@@ -1,26 +1,45 @@
 import {Action} from 'redux';
-//import {Dispatch} from 'ng-redux';
-import {/*IUserListState,*/ IUserState} from '../state/users.state';
+import {IUserState} from '../state/users.state';
 
-export const ADD_USER = 'ADD_USER';
-export const DELETE_USER = 'DELETE_USER';
-export const UPDATE_USER = 'UPDATE_USER';
+export const SET_USERS = 'SET_USERS';
+export const ADD_USERS = 'ADD_USER';
+export const DELETE_USERS = 'DELETE_USER';
+export const UPDATE_USERS = 'UPDATE_USER';
 
 export interface UsersListAction extends Action {
     payload: {
-        newUser: IUserState,
-        oldUser: IUserState
+        newUsers: IUserState[],
+        oldUsers: IUserState[]
     };
 }
 
-export function addUser(user:IUserState): UsersListAction {
-    return { type: ADD_USER, payload: {newUser: user, oldUser: undefined} };
+export function addUsers(users:IUserState[]): UsersListAction {
+    return { type: ADD_USERS, payload: {newUsers: users, oldUsers: []} };
 }
 
-export function deleteUser(user:IUserState): UsersListAction {
-    return {type: DELETE_USER, payload: {newUser: undefined, oldUser: user}};
+export function deleteUsers(users:IUserState[]): UsersListAction {
+    return {type: DELETE_USERS, payload: {newUsers: [], oldUsers: users}};
 }
 
-export function updateUser(oldUser:IUserState, newUser:IUserState): UsersListAction {
-    return {type: UPDATE_USER, payload: {oldUser, newUser}};
+export function updateUsers(oldUsers:IUserState[], newUsers:IUserState[]): UsersListAction {
+    return {type: UPDATE_USERS, payload: {oldUsers, newUsers}};
+}
+
+export function setUsers(users: IUserState[]): UsersListAction {
+    console.log('users.actions');
+    console.log(users);
+    return {type: SET_USERS, payload: {newUsers: users, oldUsers: []}};
+}
+
+export function findUser(users: IUserState[], username: string): IUserState {
+    let user:IUserState = null;
+    for(var i = 0; i < users.length && !user; i++) {
+        if(users[i].username === username) {
+            user = {
+                username: users[i].username,
+                password: users[i].password
+            };
+        }
+    }
+    return user;
 }

@@ -1,7 +1,7 @@
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
         <div flex="auto"></div>
-        <md-button class="md-raised md-primary" ng-click="vm.addRandomUser()">Add</md-button>
+        <md-button class="md-raised md-primary" ng-click="vm.createUser()">Add</md-button>
     </div>
 </md-toolbar>
 <div ng-if="vm.users.length === 0">No users have been added</div>
@@ -13,7 +13,8 @@
                     <span class="md-headline">{{user.username}}</span>
                 </md-card-title-text>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button ng-click="vm.deleteUser(user)">Delete</md-button>
+                    <md-button ng-click="vm.stateGo('user', {username: user.username})">Edit</md-button>
+                    <md-button ng-click="vm.deleteUsers([user])">Delete</md-button>
                 </md-card-actions>
             </md-card-title>
         </md-card>

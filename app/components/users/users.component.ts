@@ -1,10 +1,12 @@
 import {IComponentOptions} from 'angular';
 import {INgRedux} from 'ng-redux';
-import {addUser, deleteUser} from '../../actions/users.actions';
-import {IUserListState} from '../../state/users.state';
+import {stateGo} from 'redux-ui-router';
+import {addUsers, deleteUsers} from '../../actions/users.actions';
+import {IUserListState, IUserState, User} from '../../state/users.state';
+import {IUsersService} from "../../services/users.service";
 
 class UsersController {
-    static $inject = ['$ngRedux'];
+    static $inject = ['$ngRedux', 'usersService'];
 
     unsubscribe:Function;
 
@@ -12,25 +14,24 @@ class UsersController {
         this.unsubscribe();
     }
 
-    private idGen = 100;
-
-    addRandomUser() {
-        let id = this.idGen;
-        this.idGen += 1;
-
-        this.$ngRedux.dispatch(addUser({username: 'user ' + id, password: "foobar"}));
+    createUser(): void {
+        addUsers(User.generate());
     }
 
-    constructor(private $ngRedux:INgRedux) {
+    users: IUserState[];
+
+    static first = false;
+    constructor(private $ngRedux:INgRedux, private usersService: IUsersService) {
         this.unsubscribe = this.$ngRedux.connect(
             (state:IUserListState) => {
                 return {users: state.users};
             },
-            {addUser, deleteUser}
+            {addUsers, deleteUsers, stateGo}
         )(this);
 
-        for(var i = 0; i < 10; i++) {
-            this.addRandomUser();
+        if(!UsersController.first) {
+            UsersController.first = true;
+            usersService.fetch();
         }
     }
 }
