@@ -32,7 +32,7 @@
     3. Now your `<my-component/>` is available in your app
     
 ### Register a new route
-1. Add new router state in `app/config/routes`
+1. Add new router state in `app/config/router.config.ts`
     1. Set route key and url
     2. Use registered component for the template
 2. Add menu item to `app/components/main/main.template.html`
