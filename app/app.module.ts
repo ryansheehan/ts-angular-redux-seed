@@ -13,8 +13,8 @@ import {registerServices} from "./services/index";
 
 let app = angular.module('app', ['ngMaterial', 'ui.router', 'ngRedux', 'ng-ui-router-middleware']);
 
-registerConfigurations(app);
 registerServices(app);
+registerConfigurations(app);
 registerComponents(app);
 
 export default app;

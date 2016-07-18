@@ -3,10 +3,9 @@ import {INgRedux} from 'ng-redux';
 import {stateGo} from 'redux-ui-router';
 import {updateUsers, findUser} from '../../actions/users.actions';
 import {IUserListState, IUserState} from '../../state/users.state';
-import {IUsersService} from "../../services/users.service";
 
 class UserController {
-    static $inject = ['$ngRedux', 'usersService'];
+    static $inject = ['$ngRedux'];
 
     unsubscribe:Function;
 
@@ -35,7 +34,7 @@ class UserController {
         this.$ngRedux.dispatch(stateGo('users'));
     }
 
-    constructor(private $ngRedux:INgRedux, private usersService: IUsersService) {
+    constructor(private $ngRedux:INgRedux) {
         this.unsubscribe = this.$ngRedux.connect(
             (state:IUserListState) => {
                 return {users: state.users};
