@@ -3,6 +3,7 @@ import {ILocationProvider} from 'angular';
 import {INgRedux} from "ng-redux/index";
 import {IRootState} from "../state/index";
 import {findUser} from "../actions/users.actions";
+import {USERS_SERVICE, IUsersService} from '../services/users.service';
 
 /*
 function checkFreshNavigation($ngRedux:INgRedux): boolean {
@@ -22,7 +23,6 @@ export default class RouterConfig {
 
     constructor($stateProvider: IStateProvider,
                 $urlRouterProvider: IUrlRouterProvider,
-                //$rootScope: IRootScopeService,
                 $locationProvider: ILocationProvider) {
 
         $urlRouterProvider.otherwise("/home");
@@ -39,11 +39,15 @@ export default class RouterConfig {
             .state('users', {
                 url: "/users",
                 template: `<tar-users flex layout="column"></tar-users>`,
+                resolve: {
+                    __: [USERS_SERVICE, (usersService: IUsersService) => usersService.fetch()]
+                }
             })
             .state('user', {
                 url: "/users/{username}",
                 template: `<tar-user user="$resolve.user"></tar-user>`,
                 resolve: {
+                    __: [USERS_SERVICE, (usersService: IUsersService) => usersService.fetch()],
                     user: ($stateParams: IStateParamsService, $ngRedux:INgRedux) => {
                         let state = $ngRedux.getState() as IRootState;
                         let users = state.users;
@@ -60,60 +64,12 @@ export default class RouterConfig {
         //      toState: IState,
         //      toParams: IStateParamsService,
         //      fromState: IState,
-        //      fromParmas: IStateParamsService,
+        //      fromParams: IStateParamsService,
         //      options: IStateOptions):void => {
         //
-        //
+        //         console.log({e, toState, toParams, fromState, fromParams, options});
         //
         // })
 
     }
 }
-
-// export function registerRoutes($stateProvider: IStateProvider,
-//                                $urlRouterProvider: IUrlRouterProvider,
-//                                $locationProvider: ILocationProvider,
-//                                $rootScope: IRootScopeService){
-//
-//     $urlRouterProvider.otherwise("/home");
-//
-//     $stateProvider
-//         .state('home', {
-//             url: "/home",
-//             template: `<tar-home></tar-home>`
-//         })
-//         .state('about', {
-//             url: "/about",
-//             template: `<tar-about></tar-about>`
-//         })
-//         .state('users', {
-//             url: "/users",
-//             template: `<tar-users flex layout="column"></tar-users>`,
-//         })
-//         .state('user', {
-//             url: "/users/{username}",
-//             template: `<tar-user user="$resolve.user"></tar-user>`,
-//             resolve: {
-//                 user: ($stateParams: IStateParamsService, $ngRedux:INgRedux) => {
-//                     let state = $ngRedux.getState() as IRootState;
-//                     let users = state.users;
-//                     let username = $stateParams['username'];
-//                     return findUser(users, username);
-//                 }
-//             }
-//         });
-//
-//     $locationProvider.html5Mode(true);
-//
-//     // $rootScope.$on('$stateChangeStart',
-//     //     (e: IAngularEvent,
-//     //      toState: IState,
-//     //      toParams: IStateParamsService,
-//     //      fromState: IState,
-//     //      fromParmas: IStateParamsService,
-//     //      options: IStateOptions):void => {
-//     //
-//     //
-//     //
-//     // })
-// }
