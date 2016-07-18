@@ -32,10 +32,12 @@
     3. Now your `<my-component/>` is available in your app
     
 ### Register a new route
-1. Add new router state in `app/config/router.config.ts`
-    1. Set route key and url
-    2. Use registered component for the template
-2. Add menu item to `app/components/main/main.template.html`
+1. Create new route state in `app/config/routes/`
+    * Use registered component for the template
+    * define any state requirements under the `resolve` object
+    * define any state rules for rejecting the route
+2. Add new router state in `app/config/routes/index.ts` under `registerRoutes($stateProvider: IStateProvider)`    
+3. Add menu item to `app/components/main/main.template.html`
     1. Under `<md-navbar ... \>`
     2. Add `<md-nav-item md-nav-sref="myRouteKey" name="myRouteName">My Route Nave</md-nav-item>`
    

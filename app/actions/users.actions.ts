@@ -26,20 +26,6 @@ export function updateUsers(oldUsers:IUserState[], newUsers:IUserState[]): Users
 }
 
 export function setUsers(users: IUserState[]): UsersListAction {
-    console.log('users.actions');
-    console.log(users);
     return {type: SET_USERS, payload: {newUsers: users, oldUsers: []}};
 }
 
-export function findUser(users: IUserState[], username: string): IUserState {
-    let user:IUserState = null;
-    for(var i = 0; i < users.length && !user; i++) {
-        if(users[i].username === username) {
-            user = {
-                username: users[i].username,
-                password: users[i].password
-            };
-        }
-    }
-    return user;
-}

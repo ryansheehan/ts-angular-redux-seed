@@ -1,7 +1,7 @@
 import {IComponentOptions} from 'angular';
 import {INgRedux} from 'ng-redux';
 import {stateGo} from 'redux-ui-router';
-import {updateUsers, findUser} from '../../actions/users.actions';
+import {updateUsers} from '../../actions/users.actions';
 import {IUserListState, IUserState} from '../../state/users.state';
 
 class UserController {
@@ -41,17 +41,6 @@ class UserController {
             },
             {updateUsers, stateGo}
         )(this);
-
-        //attempt to find the user
-        if(!this.user) {
-            console.log(this.username);
-            this.user = findUser(this.users, this.username);
-        }
-
-        //still no user?  then redirect back to the list
-        if(!this.user) {
-            this.$ngRedux.dispatch(stateGo('users'));
-        }
     }
 }
 
