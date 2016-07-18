@@ -1,4 +1,4 @@
-import IModule = angular.IModule;
+import {IModule} from 'angular';
 import RouterConfig from './router.config';
 import ReduxConfig from './redux.config';
 
