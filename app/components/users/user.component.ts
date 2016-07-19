@@ -5,7 +5,7 @@ import {updateUsers} from '../../actions/users.actions';
 import {IUserListState, IUserState} from '../../state/users.state';
 
 class UserController {
-    static $inject = ['$ngRedux'];
+    static $inject = ['$ngRedux', 'ROUTE_USERS_NAME'];
 
     unsubscribe:Function;
 
@@ -31,10 +31,10 @@ class UserController {
 
     update() {
         this.$ngRedux.dispatch(updateUsers([this._original], [this._user]));
-        this.$ngRedux.dispatch(stateGo('users'));
+        this.$ngRedux.dispatch(stateGo(this.ROUTE_HOME_URL));
     }
 
-    constructor(private $ngRedux:INgRedux) {
+    constructor(private $ngRedux:INgRedux, private ROUTE_HOME_URL: string) {
         this.unsubscribe = this.$ngRedux.connect(
             (state:IUserListState) => {
                 return {users: state.users};

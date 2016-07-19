@@ -1,15 +1,16 @@
 import {IStateProvider, IUrlRouterProvider} from 'angular-ui-router';
 import {ILocationProvider} from 'angular';
-import {registerRoutes, HOME_ROUTE} from './routes/index';
+import {registerRoutes} from './routes/index';
 
 export default class RouterConfig {
-    static $inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+    static $inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'ROUTE_HOME_URL'];
 
     constructor($stateProvider: IStateProvider,
                 $urlRouterProvider: IUrlRouterProvider,
-                $locationProvider: ILocationProvider) {
+                $locationProvider: ILocationProvider,
+                ROUTE_HOME_URL: string) {
 
-        $urlRouterProvider.otherwise(HOME_ROUTE);
+        $urlRouterProvider.otherwise(ROUTE_HOME_URL);
 
         registerRoutes($stateProvider);
 

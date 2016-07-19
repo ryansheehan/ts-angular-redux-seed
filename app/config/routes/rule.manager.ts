@@ -4,10 +4,20 @@ import {INgRedux} from 'ng-redux';
 import {stateGo} from 'redux-ui-router';
 
 export interface IRouteRuleResult {
-    redirect: boolean,
     name?: string,
     params?: IStateParamsService,
     options?: IStateOptions
+}
+
+export class RouteRuleResult implements IRouteRuleResult {
+    get name() { return this._name }
+    get params() { return this._params}
+    get options() { return this._options}
+
+    constructor(private _name: string,
+                private _params: IStateParamsService = null,
+                private _options: IStateOptions = {notify: false}) {
+    }
 }
 
 export interface IRouteRule extends Function {
@@ -23,7 +33,7 @@ export interface IDataRouteRules {
     rules?: IRouteRule[]
 }
 
-export interface IRuleState extends IState {
+export interface IStateWithRules extends IState {
     data?: IDataRouteRules
 }
 
@@ -38,13 +48,14 @@ class RouteRuleManager {
              fromState: IState,
              fromParams: IStateParamsService,
              options: IStateOptions) => {
-                let state = toState as IRuleState;
+
+                let state = toState as IStateWithRules;
                 if(state && state.data && state.data.rules) {
                     let rules = state.data.rules;
                     for(let i = 0; i < rules.length; i++) {
                         let rule = rules[i];
                         let result = rule($ngRedux, toState, toParams, fromState, fromParams, options);
-                        if(result.redirect) {
+                        if(result) {
                             stateGo(result.name, result.params, result.options);
                         }
                     }

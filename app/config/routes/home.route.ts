@@ -1,9 +1,10 @@
 import {IState} from "angular-ui-router";
 
-export let HOME_ROUTE = '/home';
-
 export class HomeRoute implements IState {
-    name = 'home';
-    url = HOME_ROUTE;
+    static get NAME() { return 'home' };
+    static get URL() { return '/home' };
+
+    name = HomeRoute.NAME;
+    url = HomeRoute.URL;
     template = `<tar-home></tar-home>`;
 }
