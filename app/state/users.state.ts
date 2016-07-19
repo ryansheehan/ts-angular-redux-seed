@@ -7,7 +7,7 @@ export class User implements IUserState {
     static idGen = 100;
     static generate(count = 1): IUserState[] {
         let list: IUserState[]  = [];
-        for(var i = 0; i < count; i++) {
+        for(let i = 0; i < count; i++) {
             list.push(new User('user' + User.idGen, 'password'));
             User.idGen += 1;
         }

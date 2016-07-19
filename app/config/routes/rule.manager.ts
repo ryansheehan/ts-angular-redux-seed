@@ -41,7 +41,7 @@ class RouteRuleManager {
                 let state = toState as IRuleState;
                 if(state && state.data && state.data.rules) {
                     let rules = state.data.rules;
-                    for(var i = 0; i < rules.length; i++) {
+                    for(let i = 0; i < rules.length; i++) {
                         let rule = rules[i];
                         let result = rule($ngRedux, toState, toParams, fromState, fromParams, options);
                         if(result.redirect) {

@@ -20,7 +20,7 @@ export class UserRoute implements IState {
 
     static findUser(users: IUserState[], username: string): IUserState {
         let user:IUserState = null;
-        for(var i = 0; i < users.length && !user; i++) {
+        for(let i = 0; i < users.length && !user; i++) {
             if(users[i].username === username) {
                 user = {
                     username: users[i].username,

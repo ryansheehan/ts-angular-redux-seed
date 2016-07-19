@@ -4,10 +4,10 @@ import {IUserState} from '../state/users.state';
 
 function addUsers(state: IUserState[] = [], action: UsersListAction): IUserState[] {
     let newUsers: IUserState[] = [];
-    for(var a = 0; a < action.payload.newUsers.length; a++) {
+    for(let a = 0; a < action.payload.newUsers.length; a++) {
         let found = false;
         let newUser = action.payload.newUsers[a];
-        for(var i = 0; i < state.length && !found; i++) {
+        for(let i = 0; i < state.length && !found; i++) {
             let user = state[i];
             if(user.username === newUser.username) {
                 found = true;
@@ -24,10 +24,10 @@ function addUsers(state: IUserState[] = [], action: UsersListAction): IUserState
 function removeUsers(state: IUserState[] = [], action: UsersListAction): IUserState[] {
     let start = 0;
     let slices: IUserState[][] = [];
-    for(var i = 0; i < state.length; i++) {
+    for(let i = 0; i < state.length; i++) {
         let user = state[i];
         let found = false;
-        for(var d = 0; d < action.payload.oldUsers.length && !found; d++) {
+        for(let d = 0; d < action.payload.oldUsers.length && !found; d++) {
             let oldUser = action.payload.oldUsers[d];
             if(user.username === oldUser.username) {
                 found = true;
@@ -49,10 +49,10 @@ function updateUsers(state: IUserState[] = [], action: UsersListAction): IUserSt
     }
 
     let result: IUserState[] = [];
-    for(var i = 0; i < state.length; i++) {
+    for(let i = 0; i < state.length; i++) {
         let sample = state[i];
         let found = false;
-        for(var o = 0; o < action.payload.oldUsers.length && !found; o++) {
+        for(let o = 0; o < action.payload.oldUsers.length && !found; o++) {
             let oldUser = action.payload.oldUsers[o];
             if(sample.username === oldUser.username) {
                 result.push(action.payload.newUsers[o]);
