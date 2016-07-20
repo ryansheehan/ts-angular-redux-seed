@@ -204,3 +204,4 @@ Helper flags reside in `app/config/log.config.ts` on the `reduxLoggingConfig` ob
 - setup systemJS Builder
 - setup unit testing infrastructure
 - setup immutable data examples in redux
+- setup ng-annotate
