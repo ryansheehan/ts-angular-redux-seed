@@ -31,13 +31,6 @@ export class UsersService implements IUsersService {
     }
 
     static first = true;
-    // fetch(): IUserListState {
-    //     let users = UsersService.first ? User.generate(10) : this.users;
-    //     if(UsersService.first) UsersService.first = false;
-    //     this.$ngRedux.dispatch(setUsers(users));
-    //     return this.$ngRedux.getState() as IUserListState;
-    // }
-
     fetch(): IPromise<IUserListState> {
         const defer = this.$q.defer<IUserListState>();
 

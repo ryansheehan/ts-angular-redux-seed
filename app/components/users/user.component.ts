@@ -3,9 +3,10 @@ import {INgRedux} from 'ng-redux';
 import {stateGo} from 'redux-ui-router';
 import {updateUsers} from '../../actions/users.actions';
 import {IUserListState, IUserState} from '../../state/users.state';
+import {States} from "../../config/routes/index";
 
 class UserController {
-    static $inject = ['$ngRedux', 'ROUTE_USERS_NAME'];
+    static $inject = ['$ngRedux'];
 
     unsubscribe:Function;
 
@@ -14,7 +15,6 @@ class UserController {
     }
 
     users: IUserState[];
-    username: string;
 
     private _original: IUserState;
     private _user: IUserState;
@@ -31,10 +31,10 @@ class UserController {
 
     update() {
         this.$ngRedux.dispatch(updateUsers([this._original], [this._user]));
-        this.$ngRedux.dispatch(stateGo(this.ROUTE_HOME_URL));
+        this.$ngRedux.dispatch(stateGo(States.USERS.name));
     }
 
-    constructor(private $ngRedux:INgRedux, private ROUTE_HOME_URL: string) {
+    constructor(private $ngRedux:INgRedux) {
         this.unsubscribe = this.$ngRedux.connect(
             (state:IUserListState) => {
                 return {users: state.users};
@@ -50,7 +50,6 @@ export class UserComponent implements IComponentOptions {
     controllerAs = "vm";
     bindings: {[binding: string]: string} = {
         'user': '<',
-        'username': '<'
     };
 }
 

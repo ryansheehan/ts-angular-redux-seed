@@ -1,29 +1,28 @@
-import {IModule} from 'angular';
 import {IStateProvider} from 'angular-ui-router';
 import {HomeRoute} from './home.route';
 import {AboutRoute} from './about.route';
 import {UsersRoute} from './users.route';
 import {UserRoute} from './user.route';
+import {IState} from "angular-ui-router";
 
-export const states = [
-    new HomeRoute(),
-    new AboutRoute(),
-    new UsersRoute(),
-    new UserRoute()
-];
+// export class States {
+//     static HOME = new HomeRoute();
+//     static ABOUT = new AboutRoute();
+//     static USERS = new UsersRoute();
+//     static USER = new UserRoute();
+// }
+
+export namespace States {
+    export const HOME = new HomeRoute();
+    export const ABOUT = new AboutRoute();
+    export const USERS = new UsersRoute();
+    export const USER = new UserRoute();
+}
 
 export function registerRoutes($stateProvider: IStateProvider) {
-    states.forEach((state) => $stateProvider.state(state));
+    Object.keys(States)
+        .filter(key => !!((<any>States)[key] as IState))
+        .forEach(key=>$stateProvider.state(<IState>((<any>States)[key])))
 }
-
-export function registerConstants(module:IModule) {
-    states.forEach(s=> {
-        const nameUC = s.name.toUpperCase();
-        module
-            .constant(`ROUTE_${nameUC}_NAME`, s.name)
-            .constant(`ROUTE_${nameUC}_URL`, s.url);
-    });
-}
-
 
 
