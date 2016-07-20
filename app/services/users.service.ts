@@ -1,3 +1,4 @@
+import {IQService, ITimeoutService, IPromise} from 'angular';
 import {IUserListState, IUserState} from "../state/users.state";
 import {User} from "../state/users.state";
 import {INgRedux} from "ng-redux/index";
@@ -6,11 +7,11 @@ import {setUsers} from "../actions/users.actions";
 export let USERS_SERVICE = 'usersService';
 
 export interface IUsersService {
-    fetch: ()=> IUserListState;
+    fetch: ()=> IPromise<IUserListState>;
 }
 
 export class UsersService implements IUsersService {
-    static $inject = ['$ngRedux'];
+    static $inject = ['$ngRedux', '$q', '$timeout'];
 
     _users: IUserState[];
     get users() {
@@ -21,7 +22,7 @@ export class UsersService implements IUsersService {
         //update server with new user?
     }
 
-    constructor(private $ngRedux: INgRedux) {
+    constructor(private $ngRedux: INgRedux, private $q: IQService, private $timeout: ITimeoutService) {
         this.$ngRedux.connect(
             (state:IUserListState) => {
                 return {users: state.users};
@@ -30,11 +31,26 @@ export class UsersService implements IUsersService {
     }
 
     static first = true;
-    fetch(): IUserListState {
-        let users = UsersService.first ? User.generate(10) : this.users;
-        if(UsersService.first) UsersService.first = false;
-        this.$ngRedux.dispatch(setUsers(users));
-        return this.$ngRedux.getState() as IUserListState;
+    // fetch(): IUserListState {
+    //     let users = UsersService.first ? User.generate(10) : this.users;
+    //     if(UsersService.first) UsersService.first = false;
+    //     this.$ngRedux.dispatch(setUsers(users));
+    //     return this.$ngRedux.getState() as IUserListState;
+    // }
+
+    fetch(): IPromise<IUserListState> {
+        const defer = this.$q.defer<IUserListState>();
+
+        // simulate a delay
+        this.$timeout(()=> {
+            const users = UsersService.first ? User.generate(10) : this.users;
+            if(UsersService.first) UsersService.first = false;
+            this.$ngRedux.dispatch(setUsers(users));
+
+            defer.resolve(this.$ngRedux.getState() as IUserListState)
+        }, 60);
+
+        return defer.promise;
     }
 }
 

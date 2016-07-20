@@ -1,10 +1,10 @@
-import {IState} from "angular-ui-router";
+import {IRouterState} from "./state.interface";
 
-export class AboutRoute implements IState {
-    static get NAME() { return 'about' };
-    static get URL() { return '/about'};
-
-    name = AboutRoute.NAME;
-    url = AboutRoute.URL;
+export class AboutRoute implements IRouterState {
+    name = 'about';
+    url = '/about';
     template = `<tar-about></tar-about>`;
+    data = {
+        redirectTo: ''
+    }
 }

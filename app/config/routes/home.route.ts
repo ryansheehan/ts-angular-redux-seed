@@ -1,10 +1,10 @@
-import {IState} from "angular-ui-router";
+import {IRouterState} from "./state.interface";
 
-export class HomeRoute implements IState {
-    static get NAME() { return 'home' };
-    static get URL() { return '/home' };
-
-    name = HomeRoute.NAME;
-    url = HomeRoute.URL;
+export class HomeRoute implements IRouterState {
+    name = 'home';
+    url = '/home';
     template = `<tar-home></tar-home>`;
+    data = {
+        redirectTo: ''
+    }
 }

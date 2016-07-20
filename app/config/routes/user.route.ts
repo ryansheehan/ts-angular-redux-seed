@@ -1,40 +1,39 @@
 import {USERS_SERVICE, IUsersService} from "../../services/users.service";
 import {IStateParamsService} from "angular-ui-router";
-import {INgRedux} from "ng-redux/index";
+import {IPromise} from 'angular';
 import {IUserListState, IUserState} from "../../state/users.state";
-import {IStateWithRules, IRouteRuleResult, RouteRuleResult} from "./rule.manager";
-import {IState} from "angular-ui-router";
+import IQService = angular.IQService;
+import IQResolveReject = angular.IQResolveReject;
+import {IRouterState} from "./state.interface";
 
-export class UserRoute implements IStateWithRules {
-    static get NAME() { return 'user' };
-    static get URL() { return '/users/{username}' };
-
-    name = UserRoute.NAME;
-    url = UserRoute.URL;
+export class UserRoute implements IRouterState {
+    name = 'user';
+    url = '/users/{username}';
     template = `<tar-user user="$resolve.user"></tar-user>`;
     resolve = {
-        __: [USERS_SERVICE, (usersService: IUsersService) => usersService.fetch()],
-        user: ($stateParams: IStateParamsService, $ngRedux:INgRedux) => {
-            let state = $ngRedux.getState() as IUserListState;
-            let users = state.users;
-            let username = $stateParams['username'];
-            return UserRoute.findUser(users, username);
-        }
+        user: ['$stateParams', '$q', USERS_SERVICE, 'ROUTE_USERS_NAME',
+            ($stateParams: IStateParamsService, $q: IQService, usersService: IUsersService, ROUTE_USERS_NAME: string): IPromise<IUserState> => {
+                const deferred = $q.defer<IUserState>();
+                const username = $stateParams['username'] as string;
+                this.data.redirectTo = ROUTE_USERS_NAME;
+                usersService.fetch().then(
+                    (state:IUserListState) => {
+                        const users = state.users;
+                        const user = UserRoute.findUser(users, username);
+                        if(user) {
+                            return deferred.resolve(user);
+                        } else {
+                            return deferred.reject(null);
+                        }
+                    }
+                );
+
+                return deferred.promise;
+            }
+        ]
     };
     data = {
-      rules: [
-          ($ngRedux: INgRedux, toState: IState, toParams: IStateParamsService): IRouteRuleResult => {
-              let state = $ngRedux.getState() as IUserListState;
-              let users = state.users;
-              let username: string = toParams['username'];
-
-              if(UserRoute.findUser(users, username)) {
-                  return null;
-              }
-
-              return new RouteRuleResult('users')
-          }
-      ]
+        redirectTo: ''
     };
 
     static findUser(users: IUserState[], username: string): IUserState {
