@@ -15,7 +15,7 @@ export class UsersService implements IUsersService {
 
     _users: IUserState[];
     get users() {
-        return JSON.parse(JSON.stringify(this._users));
+        return JSON.parse(JSON.stringify(this._users)) as IUserState[];
     }
     set users(value: IUserState[]) {
         this._users = value;
@@ -37,7 +37,7 @@ export class UsersService implements IUsersService {
         // simulate a delay
         this.$timeout(()=> {
             const users = UsersService.first ? User.generate(10) : this.users;
-            if(UsersService.first) UsersService.first = false;
+            UsersService.first = false;
             this.$ngRedux.dispatch(setUsers(users));
 
             defer.resolve(this.$ngRedux.getState() as IUserListState)

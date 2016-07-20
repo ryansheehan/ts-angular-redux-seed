@@ -5,13 +5,6 @@ import {UsersRoute} from './users.route';
 import {UserRoute} from './user.route';
 import {IState} from "angular-ui-router";
 
-// export class States {
-//     static HOME = new HomeRoute();
-//     static ABOUT = new AboutRoute();
-//     static USERS = new UsersRoute();
-//     static USER = new UserRoute();
-// }
-
 export namespace States {
     export const HOME = new HomeRoute();
     export const ABOUT = new AboutRoute();

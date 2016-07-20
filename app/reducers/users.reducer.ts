@@ -4,17 +4,17 @@ import {IUserState} from '../state/users.state';
 
 function addUsers(state: IUserState[] = [], action: UsersListAction): IUserState[] {
     let newUsers: IUserState[] = [];
-    for(let a = 0; a < action.payload.newUsers.length; a++) {
+
+    for(const newUser of action.payload.newUsers) {
         let found = false;
-        let newUser = action.payload.newUsers[a];
-        for(let i = 0; i < state.length && !found; i++) {
-            let user = state[i];
+        for(const user of state) {
             if(user.username === newUser.username) {
                 found = true;
+                break;
             }
         }
         if(!found) {
-            newUsers.push(newUser);
+            newUsers.push(newUser)
         }
     }
 
@@ -23,23 +23,22 @@ function addUsers(state: IUserState[] = [], action: UsersListAction): IUserState
 
 function removeUsers(state: IUserState[] = [], action: UsersListAction): IUserState[] {
     let start = 0;
-    let slices: IUserState[][] = [];
-    for(let i = 0; i < state.length; i++) {
-        let user = state[i];
-        let found = false;
-        for(let d = 0; d < action.payload.oldUsers.length && !found; d++) {
-            let oldUser = action.payload.oldUsers[d];
+    const slices: IUserState[][] = [];
+    for(const [i, user] of state.entries()) {
+        for(const oldUser of action.payload.oldUsers) {
             if(user.username === oldUser.username) {
-                found = true;
                 slices.push(state.slice(start, i));
                 start = i+1;
+                break;
             }
         }
     }
+    if(start < state.length) {
+        slices.push(state.slice(start));
+    }
 
-    let result: IUserState[] = [];
-    result.concat(...slices);
-    return result;
+    const [first, ...more] = slices;
+    return first.concat(...more);
 }
 
 function updateUsers(state: IUserState[] = [], action: UsersListAction): IUserState[] {
@@ -48,20 +47,16 @@ function updateUsers(state: IUserState[] = [], action: UsersListAction): IUserSt
         return state;
     }
 
-    let result: IUserState[] = [];
-    for(let i = 0; i < state.length; i++) {
-        let sample = state[i];
-        let found = false;
-        for(let o = 0; o < action.payload.oldUsers.length && !found; o++) {
-            let oldUser = action.payload.oldUsers[o];
-            if(sample.username === oldUser.username) {
-                result.push(action.payload.newUsers[o]);
-                found = true;
+    const result: IUserState[] = [];
+    for(const user of state) {
+        let push = user;
+        for(const [i, oldUser] of action.payload.oldUsers.entries()) {
+            if(user.username === oldUser.username) {
+                push = action.payload.newUsers[i];
+                break;
             }
         }
-        if(!found) {
-            result.push(sample);
-        }
+        result.push(push);
     }
 
     return result;
@@ -71,15 +66,7 @@ function setUsers(state: IUserState[] = [], action: UsersListAction): IUserState
     return action.payload.newUsers;
 }
 
-export default function usersReducer(state: IUserState[], action: UsersListAction): IUserState[] {
-    // if(!state) {
-    //     state = [{username: 'default', password: 'user'}];
-    // }
-
-    if(state === undefined) {
-        state = [];
-    }
-
+export default function usersReducer(state: IUserState[] = [], action: UsersListAction): IUserState[] {
     switch(action.type) {
         case ADD_USERS:      return addUsers(state, action);
         case DELETE_USERS:   return removeUsers(state, action);

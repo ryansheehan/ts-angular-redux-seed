@@ -6,7 +6,7 @@ export interface IUserState {
 export class User implements IUserState {
     static idGen = 100;
     static generate(count = 1): IUserState[] {
-        let list: IUserState[]  = [];
+        const list: IUserState[]  = [];
         for(let i = 0; i < count; i++) {
             list.push(new User('user' + User.idGen, 'password'));
             User.idGen += 1;
