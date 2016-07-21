@@ -20,9 +20,9 @@ export class UserRoute implements IRouterState {
                 usersService.fetch().then(
                     (state:IUserListState) => {
                         const users = state.users;
-                        const user = UserRoute.findUser(users, username);
+                        const user = users.find(u=>u.username === username);
                         if(user) {
-                            return deferred.resolve(user);
+                            return deferred.resolve({username: user.username, password: user.password});
                         } else {
                             return deferred.reject(null);
                         }
@@ -36,17 +36,4 @@ export class UserRoute implements IRouterState {
     data = {
         redirectTo: ''
     };
-
-    static findUser(users: IUserState[], username: string): IUserState {
-        let user:IUserState = null;
-        for(let i = 0; i < users.length && !user; i++) {
-            if(users[i].username === username) {
-                user = {
-                    username: users[i].username,
-                    password: users[i].password
-                };
-            }
-        }
-        return user;
-    }
 }
