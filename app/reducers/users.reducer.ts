@@ -43,16 +43,17 @@ function removeUsers(state: IUserState[] = [], action: UsersListAction): IUserSt
 
 function updateUsers(state: IUserState[] = [], action: UsersListAction): IUserState[] {
     //make sure new and old match so there are even swaps
-    if(action.payload.newUsers.length != action.payload.oldUsers.length) {
+    const {newUsers, oldUsers} = action.payload;
+    if(newUsers.length != oldUsers.length) {
         return state;
     }
 
     const result: IUserState[] = [];
     for(const user of state) {
         let push = user;
-        for(const [i, oldUser] of action.payload.oldUsers.entries()) {
+        for(const [i, oldUser] of oldUsers.entries()) {
             if(user.username === oldUser.username) {
-                push = action.payload.newUsers[i];
+                push = newUsers[i];
                 break;
             }
         }
