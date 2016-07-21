@@ -16,7 +16,8 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "postinstall": "typings install",
-    "typings": "typings"
+    "typings": "typings",
+    "typings:version": "typings --version"
   },
   "author": "Ryan Sheehan <rsheehan@gmail.com>",
   "license": "ISC",
@@ -39,11 +40,13 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "redux-ui-router": "^0.5.2",
-    "systemjs": "^0.19.31"
+    "systemjs": "^0.19.31",
+    "ui-router-extras": "^0.1.2"
   },
   "devDependencies": {
     "concurrently": "^2.2.0",
     "lite-server": "^2.2.2",
+    "systemjs-builder": "^0.15.23",
     "typescript": "^1.8.10",
     "typings": "^1.3.1"
   }
