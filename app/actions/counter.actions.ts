@@ -1,11 +1,10 @@
-import {Action} from 'redux';
 import {Dispatch} from 'ng-redux';
 import {ICounterState} from '../state/counter.state';
 
 export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 
-export interface CounterAction extends Action {}
+export interface CounterAction extends Redux.Action {}
 
 export function increment(): CounterAction {
     return {type: INCREMENT_COUNTER};

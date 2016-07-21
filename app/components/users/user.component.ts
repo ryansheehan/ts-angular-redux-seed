@@ -1,4 +1,3 @@
-import {IComponentOptions} from 'angular';
 import {INgRedux} from 'ng-redux';
 import {stateGo} from 'redux-ui-router';
 import {updateUsers} from '../../actions/users.actions';
@@ -44,7 +43,7 @@ class UserController {
     }
 }
 
-export class UserComponent implements IComponentOptions {
+export class UserComponent implements angular.IComponentOptions {
     templateUrl = "app/components/users/user.template.html";
     controller = UserController;
     controllerAs = "vm";

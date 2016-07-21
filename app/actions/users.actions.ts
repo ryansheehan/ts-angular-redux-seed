@@ -1,4 +1,3 @@
-import {Action} from 'redux';
 import {IUserState} from '../state/users.state';
 
 export const SET_USERS = 'SET_USERS';
@@ -6,7 +5,7 @@ export const ADD_USERS = 'ADD_USER';
 export const DELETE_USERS = 'DELETE_USER';
 export const UPDATE_USERS = 'UPDATE_USER';
 
-export interface UsersListAction extends Action {
+export interface UsersListAction extends Redux.Action {
     payload: {
         newUsers: IUserState[],
         oldUsers: IUserState[]

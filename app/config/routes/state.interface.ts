@@ -1,5 +1,3 @@
-import {IState} from "angular-ui-router";
-
-export interface IRouterState extends IState {
+export interface IRouterState extends angular.ui.IState {
     data: { [key:string]:any; redirectTo: string}
 }

@@ -1,4 +1,3 @@
-import {Action} from 'redux';
 import {INgReduxProvider} from 'ng-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -10,7 +9,7 @@ export default class ReduxConfig {
 
     constructor($ngReduxProvider: INgReduxProvider) {
         const logger = createLogger({
-            predicate: (getState: any, action: Action) => {
+            predicate: (getState: any, action: Redux.Action) => {
                 switch(action.type) {
                     case '@@reduxUiRouter/$stateChangeStart':
                     case '@@reduxUiRouter/$stateChangeSuccess':

@@ -4,7 +4,7 @@ import usersReducer from './users.reducer';
 import {IRootState} from '../state/index';
 import {router} from 'redux-ui-router';
 
-const rootReducer:Reducer<IRootState> = combineReducers<IRootState>({
+const rootReducer: Reducer<IRootState> = combineReducers<IRootState>({
     counter: counterReducer,
     users: usersReducer,
     router

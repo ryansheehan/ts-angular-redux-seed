@@ -1,4 +1,3 @@
-import {IComponentOptions} from 'angular';
 import {INgRedux} from 'ng-redux';
 import {increment, decrement, incrementAsync, incrementIfOdd} from '../../actions/counter.actions';
 import {ICounterState} from '../../state/counter.state';
@@ -21,7 +20,7 @@ class CounterController {
     }
 }
 
-export class CounterComponent implements IComponentOptions {
+export class CounterComponent implements angular.IComponentOptions {
     templateUrl = "app/components/counter/counter.template.html";
     controllerAs = "vm";
     controller = CounterController;
