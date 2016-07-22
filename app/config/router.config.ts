@@ -12,6 +12,7 @@ export let routerErrorManager = ['$rootScope', '$ngRedux',
                               fromParams: angular.ui.IStateParamsService,
                               error:Error) {
             event.preventDefault();
+            console.error(error);
             const state = toState as IRouterState;
             const redirectTo = state && state.data && state.data.redirectTo ? state.data.redirectTo : States.HOME.name;
             $ngRedux.dispatch(stateGo(redirectTo));
