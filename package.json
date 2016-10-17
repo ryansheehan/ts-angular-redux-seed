@@ -11,13 +11,10 @@
   ],
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\"",
-    "build": "tsc",
-    "lite": "lite-server",
+    "build": "tsc -m system -outFile build.js app/app.module.ts --moduleResolution node -t es2015",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "postinstall": "typings install",
-    "typings": "typings",
-    "typings:version": "typings --version"
+    "lite": "lite-server"
   },
   "author": "Ryan Sheehan <rsheehan@gmail.com>",
   "license": "ISC",
@@ -45,10 +42,17 @@
     "ui-router-extras": "^0.1.2"
   },
   "devDependencies": {
+    "@types/angular": "^1.5.16",
+    "@types/angular-material": "^1.1.39",
+    "@types/angular-ui-router": "^1.1.34",
+    "@types/jquery": "^2.0.33",
+    "@types/redux": "^3.6.31",
+    "@types/redux-logger": "^2.6.32",
+    "@types/redux-thunk": "^2.1.31",
+    "@types/ui-router-extras": "0.0.31",
     "concurrently": "^2.2.0",
     "lite-server": "^2.2.2",
     "systemjs-builder": "^0.15.23",
-    "typescript": "^1.8.10",
-    "typings": "^1.3.1"
+    "typescript": "^2.0.3"
   }
 }

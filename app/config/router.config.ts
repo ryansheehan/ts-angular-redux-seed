@@ -2,6 +2,7 @@ import {registerRoutes, States} from './routes/index';
 import {INgRedux} from "ng-redux";
 import {stateGo} from "redux-ui-router";
 import {IRouterState} from "./routes/state.interface";
+import * as angular from "angular";
 
 export let routerErrorManager = ['$rootScope', '$ngRedux',
     ($rootScope: angular.IRootScopeService, $ngRedux:INgRedux) => {

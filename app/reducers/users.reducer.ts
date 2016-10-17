@@ -1,3 +1,4 @@
+import * as angular from 'angular';
 import {ADD_USERS, DELETE_USERS, UPDATE_USERS, SET_USERS, UsersListAction} from '../actions/users.actions';
 import {IUserState} from '../state/users.state';
 

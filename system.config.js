@@ -3,7 +3,6 @@ System.config({
     defaultJSExtensions: true,
 
 	map: {
-		'app': 'app',
 		'angular': 'node_modules/angular',
 		'redux': 'node_modules/redux/dist',
 		'redux-thunk': 'node_modules/redux-thunk/dist',
@@ -19,7 +18,6 @@ System.config({
 	},
 
 	packages: {
-		'app': { main: 'app.module.js' },
 		'angular': { main: 'index.js' },
 		'redux': { main: 'redux.js' },
 		'redux-thunk': { main: 'redux-thunk.js' },
@@ -33,6 +31,4 @@ System.config({
 		'angular-animate': { main: 'index.js' },
 		'angular-aria': { main: 'index.js' }
 	}
-
-
 });
