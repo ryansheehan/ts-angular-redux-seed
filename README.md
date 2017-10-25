@@ -4,7 +4,7 @@
 
 - TypeScript
 - systemJS
-- Angular 1.5
+- AngularJS 1.5
 - ui-angular-router
 - angular-material
 - redux
